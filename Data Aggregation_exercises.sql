@@ -95,7 +95,7 @@ GROUP BY e.department_id
 HAVING third_highest_salary IS NOT NULL
 ORDER BY e.department_id;
 
--- вложена заявка!
+-- вложена заявка! --
 -- SELECT DISTINCT salary FROM employees
 -- WHERE department_id = 1
 -- ORDER BY salary DESC
@@ -104,6 +104,20 @@ ORDER BY e.department_id;
 --  e - alias - какво означава
 
 -- 17 Salary Challenge**
+
+SELECT * FROM employees;
+
+SELECT first_name , last_name, department_id 
+FROM employees e
+WHERE salary > (SELECT AVG(salary) 
+	FROM employees 
+    WHERE department_id = e.department_id)
+ORDER BY department_id, employee_id
+LIMIT 10;
+
+
+
+
 
 
 
