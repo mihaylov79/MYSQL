@@ -83,10 +83,8 @@ name VARCHAR(50),
 manager_id INT
 );
 
-INSERT INTO teachers(teacher_id, name)
-VALUES (101, 'John');
-
 INSERT INTO teachers VALUES
+(101, 'John', null),
 (102, 'Maya', 106),
 (103, 'Silvia', 106),
 (104, 'Ted', 105),
