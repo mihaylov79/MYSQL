@@ -91,5 +91,101 @@ INSERT INTO teachers VALUES
 (105, 'Mark', 101),
 (106, 'Greta', 101);
 
+-- 5. Online Store Database 
+
+CREATE TABLE cities (
+    city_id INT AUTO_INCREMENT PRIMARY KEY ,
+    name VARCHAR(50)
+);
+
+CREATE TABLE customers(
+    customer_id INT AUTO_INCREMENT PRIMARY KEY ,
+    name VARCHAR(50),
+    birthday DATE,
+    city_id INT,
+
+    FOREIGN KEY (city_id) REFERENCES cities(city_id)
+);
+
+CREATE TABLE orders(
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+CREATE TABLE item_types(
+    item_type_id INT AUTO_INCREMENT PRIMARY KEY ,
+    name VARCHAR(50)
+);
+
+CREATE TABLE items(
+    item_id INT AUTO_INCREMENT PRIMARY KEY ,
+    name VARCHAR(50),
+    item_type_id INT,
+
+    FOREIGN KEY (item_type_id) REFERENCES item_types(item_type_id)
+);
+
+CREATE TABLE order_items(
+    order_id INT,
+    item_id INT,
+
+    PRIMARY KEY (order_id, item_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (item_id) REFERENCES items(item_id)
+
+);
+
+-- 6. University Database
+
+CREATE TABLE majors(
+    major_id INT AUTO_INCREMENT PRIMARY KEY ,
+    name VARCHAR(50)
+);
+
+CREATE TABLE students(
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_number VARCHAR(12),
+    student_name VARCHAR(50),
+    major_id INT,
+
+    FOREIGN KEY (major_id) REFERENCES majors(major_id)
+);
+
+CREATE TABLE payments(
+    payment_id INT AUTO_INCREMENT PRIMARY KEY ,
+    payment_date DATE,
+    payment_amount DECIMAL(8,2),
+    student_id INT,
+
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
+CREATE TABLE subjects(
+    subject_id INT AUTO_INCREMENT PRIMARY KEY ,
+    subject_name VARCHAR(50)
+);
+
+CREATE TABLE agenda(
+    student_id INT,
+    subject_id INT,
+
+    PRIMARY KEY (student_id,subject_id),
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+);
+
+-- 9. Peaks in Rila
+
+SELECT 
+	mountain_range, 
+    peaks.peak_name , 
+    peaks.elevation AS peak_elevation
+FROM mountains
+JOIN peaks ON mountain_id = peaks.mountain_id
+WHERE mountains.mountain_range = 'Rila' 
+AND peaks.mountain_id = 17
+ORDER BY elevation DESC;
 ALTER TABLE teachers ADD 
 FOREIGN KEY (manager_id) REFERENCES teachers(teacher_id);
