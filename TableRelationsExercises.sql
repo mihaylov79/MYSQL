@@ -179,13 +179,24 @@ CREATE TABLE agenda(
 -- 9. Peaks in Rila
 
 SELECT 
-	mountain_range, 
+    mountain_range, 
     peaks.peak_name , 
     peaks.elevation AS peak_elevation
 FROM mountains
-JOIN peaks ON mountain_id = peaks.mountain_id
+JOIN peaks 
+	ON mountain_id = peaks.mountain_id
 WHERE mountains.mountain_range = 'Rila' 
 AND peaks.mountain_id = 17
 ORDER BY elevation DESC;
-ALTER TABLE teachers ADD 
-FOREIGN KEY (manager_id) REFERENCES teachers(teacher_id);
+
+-- ver.2 (better One)
+
+SELECT 
+	mountain_range , 
+	peak_name, 
+	elevation AS peaks_elevation
+FROM peaks p
+JOIN mountains m 
+	ON p.mountain_id = m.id
+WHERE m.mountain_range = 'Rila'
+ORDER BY elevation DESC;
