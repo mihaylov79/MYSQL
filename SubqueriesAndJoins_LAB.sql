@@ -29,3 +29,21 @@ WHERE salary > (
 	SELECT AVG (salary) FROM employees
     );
 
+-- 2 ------------------
+SELECT * FROM addresses;
+
+------- вариант 1
+
+SELECT a.town_id, t.name, a.address_text
+FROM addresses AS a
+JOIN towns AS t ON a.town_id = t.town_id
+WHERE t.name IN( 'San Francisco', 'Sofia', 'Carnation')
+ORDER BY a.town_id, a.address_id;
+
+---- вариант 2
+
+SELECT a.town_id, t.name, a.address_text
+FROM addresses AS a
+JOIN towns AS t ON a.town_id = t.town_id
+AND t.name IN( 'San Francisco', 'Sofia', 'Carnation')
+ORDER BY a.town_id, a.address_id;
