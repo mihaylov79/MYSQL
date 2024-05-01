@@ -51,8 +51,9 @@ ORDER BY a.town_id, a.address_id;
 -- 3 Employees Without Managers
 SELECT employee_id, 
 		first_name, 
-        last_name , salary , 
-         department_id
+        last_name ,
+         department_id,
+	 salary 
 FROM employees
 WHERE manager_id IS NULL;
 
