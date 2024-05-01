@@ -47,3 +47,12 @@ FROM addresses AS a
 JOIN towns AS t ON a.town_id = t.town_id
 AND t.name IN( 'San Francisco', 'Sofia', 'Carnation')
 ORDER BY a.town_id, a.address_id;
+
+-- 3 Employees Without Managers
+SELECT employee_id, 
+		first_name, 
+        last_name , salary , 
+         department_id
+FROM employees
+WHERE manager_id IS NULL;
+
