@@ -69,4 +69,15 @@ m.last_name
 FROM employees e
 JOIN employees AS m ON e.manager_id = m.employee_id;
 
+-- JOIN на две или повече таблици примери
+SELECT
+e.employee_id,
+e.first_name,
+e.last_name,
+ep.project_id,
+p.name
+FROM employees AS e
+JOIN employees_projects AS ep ON e.employee_id = ep.employee_id
+JOIN projects AS p ON ep.project_id = p.project_id
+ORDER BY e.employee_id;
 
