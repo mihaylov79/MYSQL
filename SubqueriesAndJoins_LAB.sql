@@ -57,3 +57,16 @@ SELECT employee_id,
 FROM employees
 WHERE manager_id IS NULL;
 
+-- JOIN в една и съща таблица пример
+SELECT 
+e.employee_id,
+e.first_name,
+e.last_name,
+e.manager_id,
+m.employee_id,
+m.first_name,
+m.last_name
+FROM employees e
+JOIN employees AS m ON e.manager_id = m.employee_id;
+
+
