@@ -57,10 +57,38 @@ INSERT INTO  deliveries(item_id, quantity, single_price, orderN, AS_orderN, invo
 (8,1,27,'ПК126','AS-00600',1);
 
 CREATE VIEW sort AS
-    SELECT i.name , d.quantity, d.single_price, d.orderN,d.AS_orderN,
+    SELECT i.code, i.name , d.quantity, d.single_price, d.orderN,d.AS_orderN,
            CONCAT(d.orderN, ' ', d.AS_orderN) AS PARTIDE
 FROM deliveries d
 JOIN invoices inv ON d.invoice_id = inv.id
 JOIN items i ON d.item_id = i.id
 ORDER BY thickness , orderN;
+
+
+UPDATE deliveries 
+SET single_price = 93.20 WHERE id = 15;
+
+UPDATE deliveries
+SET single_price = 331.6,
+	orderN = 'ПК126',
+	AS_orderN = 'AS-00600' 
+WHERE id = 17;
+
+UPDATE deliveries
+SET item_id = 6 WHERE id = 16;
+
+UPDATE deliveries
+SET item_id = 7 WHERE id IN (13,18,22);
+
+UPDATE deliveries
+SET item_id = 8 WHERE id = 23;
+
+UPDATE deliveries
+SET item_id = 9 WHERE id = 24;
+
+UPDATE deliveries
+SET item_id = 4 WHERE id = 21;
+
+
+
 
